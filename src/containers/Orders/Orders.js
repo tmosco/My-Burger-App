@@ -12,10 +12,11 @@ class Orders extends Component {
 
   componentDidMount() {
     axios
-      .get("orders.json")
+      .get("/orders.json")
       .then((res) => {
         const fetchedOrders = [];
         for (let key in res.data) {
+          console.log(fetchedOrders)
           fetchedOrders.push({ ...res.data[key], id: key });
           //   console.log(key,fetchedOrders);
         }
