@@ -1,0 +1,22 @@
+Button:first-of-type {
+  margin-right:20px;
+  padding-left: 0;
+}
+
+.Success {
+  color: #5c9210;
+}
+
+.Danger {
+  color: #944317;
+}
+
+
+.Button {
+color:red;
+}
+
+button:disabled {
+  color: grey;
+  cursor: not-allowed;
+}
