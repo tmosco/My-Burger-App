@@ -128,8 +128,20 @@ this.setState(prevState =>{
     if(this.props.loading){
       form=<Spinner/>
     }
+
+    let errorMessage = null;
+    if(this.props.error){
+      errorMessage=(
+        <p>{this.props.error.message}</p>
+      )
+    }
+
+
+
+
     return (
       <div className={AuthStyle.Auth}>
+        {errorMessage}
         <form onSubmit={this.submitHandler}>
           {form}
           <Button btnType="Success" text="SUBMIT" />
