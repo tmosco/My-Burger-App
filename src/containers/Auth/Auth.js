@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {  Redirect } from "react-router-dom";
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import AuthStyle from "./Auth.module.css";
@@ -103,6 +104,8 @@ this.setState(prevState =>{
 })
   }
 
+
+
   render() {
     const formElementArray = [];
     for (let key in this.state.controls) {
@@ -136,18 +139,25 @@ this.setState(prevState =>{
       )
     }
 
+let display=(
+  <div className={AuthStyle.Auth}>
+  {errorMessage}
+  <form onSubmit={this.submitHandler}>
+    {form}
+    <Button btnType="Success" text="SUBMIT" />
+  </form>
+  <Button clicked={this.switchAuthModeHandler} btnType="Danger" text={`SWITCH TO ${this.state.isSignup ? 'LOG IN' : 'SIGN UP'}`}/>
+</div>
+)
 
+if(this.props.token !== null){
+ display = <Redirect to="/" />;
+}
 
 
     return (
-      <div className={AuthStyle.Auth}>
-        {errorMessage}
-        <form onSubmit={this.submitHandler}>
-          {form}
-          <Button btnType="Success" text="SUBMIT" />
-        </form>
-        <Button clicked={this.switchAuthModeHandler} btnType="Danger" text={`SWITCH TO ${this.state.isSignup ? 'LOG IN' : 'SIGN UP'}`}/>
-      </div>
+      display
+ 
     );
   }
 }

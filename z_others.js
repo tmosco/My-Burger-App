@@ -83,3 +83,61 @@ const reducer = (state = initialState, action) => {
 };
 
 export default reducer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import {  Redirect } from "react-router-dom";
+import * as actions from "../../Store/actions/index";
+
+
+class Logout extends Component {
+componentDidMount(){
+    this.props.onLogout()
+}
+
+render() {
+    console.log(this.props.token)
+let golInk=<Redirect to="/" />
+if(this.props.token === null ){
+    golInk=<Redirect to="/auth" />
+}
+
+
+
+        return (
+        golInk
+        );
+    }
+}
+
+const mapStateToProps =state =>{
+    return{
+        token: state.auth.token,
+    }
+}
+
+const mapDispatchToProps=dispatch=>{
+    return{
+        onLogout:() => dispatch(actions.logout())
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Logout);
