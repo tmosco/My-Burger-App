@@ -13,7 +13,7 @@ componentDidMount(){
 
     render() {
         return (
-        <Redirect to="/auth" />
+        <Redirect to="/" />
         );
     }
 }
