@@ -42,7 +42,7 @@ export const purchaseInit = () => {
 };
 
 
-export const fetchOrdersSucces = (orders) =>{
+export const fetchOrdersSuccess = (orders) =>{
   return{
     type: actionTypes.FETCH_ORDERS_SUCCESS,
     orders:orders
@@ -71,12 +71,14 @@ export const fetchOrders =(token, userId) =>{
     const fetchedOrders = [];
     for (let key in res.data) {
       fetchedOrders.push({ ...res.data[key], id: key });
-      //   console.log(key,fetchedOrders);
+        console.log(key,fetchedOrders);
     }
-    dispatch(fetchOrdersSucces(fetchedOrders))
+    dispatch(fetchOrdersSuccess(fetchedOrders))
   })
   .catch((err) =>dispatch(fetchOrdersFail(err)));
  }
   }
+
+
 
 

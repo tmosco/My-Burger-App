@@ -5,6 +5,7 @@ import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import Logout from "./containers/Auth/Logout";
 import * as actions from "./Store/actions/index";
+import Spinner from './components/UI/Spinner/Spinner'
 
 const Checkout = React.lazy(() => {
   return import("./containers/Checkout/Checkout");
@@ -23,7 +24,7 @@ const App = (props) => {
 
   let routes = (
     <Switch>
-      <Route path="/auth" exact render={() => <Auth />} />
+      <Route path="/auth" exact render={(props) => <Auth {...props} />} />
       <Route path="/" exact component={BurgerBuilder} />
       <Redirect to="/" />
     </Switch>
@@ -32,9 +33,9 @@ const App = (props) => {
     routes = (
       <Switch>
         <Route path="/logout" component={Logout} />
-        <Route path="/checkout" render={() => <Checkout />} />
-        <Route path="/orders" exact render={() => <Orders />} />
-        <Route path="/auth" exact render={() => <Auth />} />
+        <Route path="/checkout" render={(props) => <Checkout {...props} />} />
+        <Route path="/orders" exact render={(props) => <Orders {...props} />} />
+        <Route path="/auth" exact render={(props) => <Auth {...props} />} />
         <Route path="/" exact component={BurgerBuilder} />
         <Redirect to="/" />
       </Switch>
@@ -44,7 +45,7 @@ const App = (props) => {
   return (
     <>
       <Layouts>
-        <Suspense>{routes}</Suspense>
+        <Suspense fallback={<Spinner/>}>{routes}</Suspense>
       </Layouts>
     </>
   );
