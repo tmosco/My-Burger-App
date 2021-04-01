@@ -9,9 +9,7 @@ const Layouts = (props) => {
   const [showSideDrawer, setShowSideDrawer] = useState(false);
 
   const sideDrawerClosedHandler = () => {
-    setShowSideDrawer({
-      showSideDrawer: false,
-    });
+    setShowSideDrawer(false);
   };
   const toggleHandler = () => {
     setShowSideDrawer(!showSideDrawer);
